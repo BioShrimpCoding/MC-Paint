@@ -187,6 +187,7 @@ function MainMenu () {
         `)
     myMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
         if (selectedIndex == 0) {
+            sprites.destroyAllSpritesOfKind(SpriteKind.MainMenuSprite)
             Page1T = false
             Page2T = false
             Page3T = false
@@ -313,7 +314,6 @@ function MainMenu () {
                 ................................................................................................................................................................
                 `)
             myMenu.close()
-            sprites.destroy(MenuSrpite)
             Painting = true
             brushSizr = 1
             image2 = sprites.create(image.create(scene.screenWidth(), scene.screenHeight()), SpriteKind.Player)
@@ -1058,7 +1058,18 @@ browserEvents.onMouseMove(function (x, y) {
     }
 })
 browserEvents.F.onEvent(browserEvents.KeyEvent.Pressed, function () {
-    ColorChangeMenuCode()
+    if (Page2T == false && (Page3T == false && Page1T == false)) {
+        ColorChangeMenuCode()
+    } else if (Page1T == true) {
+        Page1.close()
+        Page1T = false
+    } else if (Page2T == true) {
+        Page2.close()
+        Page2T = false
+    } else if (Page3T == true) {
+        Page3.close()
+        Page3T = false
+    }
 })
 let Page3: miniMenu.MenuSprite = null
 let Page2: miniMenu.MenuSprite = null
