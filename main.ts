@@ -592,7 +592,7 @@ function MainMenu () {
                 `
             ]
             Mousee = sprites.create(ColoursList[CurrentColour], SpriteKind.Mouse)
-            Mousee.setFlag(SpriteFlag.Invisible, true)
+            Mousee.setFlag(SpriteFlag.Invisible, false)
         } else {
             myMenu.close()
             myMenu = miniMenu.createMenu(
@@ -664,14 +664,7 @@ function MainMenu () {
         }
     })
 }
-browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function (x, y) {
-    if (Painting == true) {
-        for (let index = 0; index <= brushSizr; index++) {
-            image2.image.drawRect(x - brushSizr / 2, y - brushSizr / 2, index, index, CurrentColour + 1)
-        }
-    }
-})
-function ColorChangeMenuCode () {
+function ColorChangeMenuCode (Painting: boolean) {
     if (Painting == true) {
         if (Page2T == true || (Page3T == true || Page1T == true)) {
         	
@@ -773,23 +766,23 @@ function ColorChangeMenuCode () {
         }
         Page1.onButtonPressed(controller.A, function (selection, selectedIndex) {
             if (selectedIndex == 0) {
-                CurrentColour = selectedIndex
+                CurrentColour = 0
                 Page1T = false
                 Page1.close()
             } else if (selectedIndex == 1) {
-                CurrentColour = selectedIndex
+                CurrentColour = 0
                 Page1T = false
                 Page1.close()
             } else if (selectedIndex == 2) {
-                CurrentColour = selectedIndex
+                CurrentColour = 0
                 Page1T = false
                 Page1.close()
             } else if (selectedIndex == 3) {
-                CurrentColour = selectedIndex
+                CurrentColour = 0
                 Page1T = false
                 Page1.close()
             } else if (selectedIndex == 4) {
-                CurrentColour = selectedIndex
+                CurrentColour = 0
                 Page1T = false
                 Page1.close()
             } else {
@@ -889,161 +882,181 @@ function ColorChangeMenuCode () {
                     `),
                 miniMenu.createMenuItem("Next Page")
                 )
-                Page2.onButtonPressed(controller.A, function (selection, selectedIndex) {
+            }
+            Page2.onButtonPressed(controller.A, function (selection, selectedIndex) {
+                if (selectedIndex == 0) {
+                    CurrentColour = 0 + 5
+                    Page2T = false
+                    Page2.close()
+                } else if (selectedIndex == 1) {
+                    CurrentColour = 0 + 5
+                    Page2T = false
+                    Page2.close()
+                } else if (selectedIndex == 2) {
+                    CurrentColour = 0 + 5
+                    Page2T = false
+                    Page2.close()
+                } else if (selectedIndex == 3) {
+                    CurrentColour = 0 + 5
+                    Page2T = false
+                    Page2.close()
+                } else if (selectedIndex == 4) {
+                    CurrentColour = 0 + 5
+                    Page2T = false
+                    Page2.close()
+                } else {
+                    Page2.close()
+                    Page2T = false
+                    Page3T = true
+                    Page3 = miniMenu.createMenu(
+                    miniMenu.createMenuItem("light Purple", img`
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        b b b b b b b b b b b b b b b b 
+                        `),
+                    miniMenu.createMenuItem("Dark Purple", img`
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        c c c c c c c c c c c c c c c c 
+                        `),
+                    miniMenu.createMenuItem("Tan", img`
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        d d d d d d d d d d d d d d d d 
+                        `),
+                    miniMenu.createMenuItem("brown", img`
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        e e e e e e e e e e e e e e e e 
+                        `),
+                    miniMenu.createMenuItem("Black", img`
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        f f f f f f f f f f f f f f f f 
+                        `)
+                    )
+                }
+                Page3.onButtonPressed(controller.A, function (selection, selectedIndex) {
                     if (selectedIndex == 0) {
-                        CurrentColour = selectedIndex + 5
-                        Page2T = false
-                        Page2.close()
+                        CurrentColour = 0 + 10
+                        Page3T = false
+                        Page3.close()
                     } else if (selectedIndex == 1) {
-                        CurrentColour = selectedIndex + 5
-                        Page2T = false
-                        Page2.close()
+                        CurrentColour = 0 + 10
+                        Page3T = false
+                        Page3.close()
                     } else if (selectedIndex == 2) {
-                        CurrentColour = selectedIndex + 5
-                        Page2T = false
-                        Page2.close()
+                        CurrentColour = 0 + 10
+                        Page3T = false
+                        Page3.close()
                     } else if (selectedIndex == 3) {
-                        CurrentColour = selectedIndex + 5
-                        Page2T = false
-                        Page2.close()
+                        CurrentColour = 0 + 10
+                        Page3T = false
+                        Page3.close()
                     } else if (selectedIndex == 4) {
-                        CurrentColour = selectedIndex + 5
-                        Page2T = false
-                        Page2.close()
+                        CurrentColour = 0 + 10
+                        Page3T = false
+                        Page3.close()
                     } else {
-                        Page2.close()
-                        Page2T = false
-                        Page3T = true
-                        Page3 = miniMenu.createMenu(
-                        miniMenu.createMenuItem("light Purple", img`
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            b b b b b b b b b b b b b b b b 
-                            `),
-                        miniMenu.createMenuItem("Dark Purple", img`
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            c c c c c c c c c c c c c c c c 
-                            `),
-                        miniMenu.createMenuItem("Tan", img`
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            d d d d d d d d d d d d d d d d 
-                            `),
-                        miniMenu.createMenuItem("brown", img`
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            e e e e e e e e e e e e e e e e 
-                            `),
-                        miniMenu.createMenuItem("Black", img`
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            f f f f f f f f f f f f f f f f 
-                            `)
-                        )
-                        Page3.onButtonPressed(controller.A, function (selection, selectedIndex) {
-                            if (selectedIndex == 0) {
-                                CurrentColour = selectedIndex + 10
-                                Page3T = false
-                                Page3.close()
-                            } else if (selectedIndex == 1) {
-                                CurrentColour = selectedIndex + 10
-                                Page3T = false
-                                Page3.close()
-                            } else if (selectedIndex == 2) {
-                                CurrentColour = selectedIndex + 10
-                                Page3T = false
-                                Page3.close()
-                            } else if (selectedIndex == 3) {
-                                CurrentColour = selectedIndex + 10
-                                Page3T = false
-                                Page3.close()
-                            } else if (selectedIndex == 4) {
-                                CurrentColour = selectedIndex + 10
-                                Page3T = false
-                                Page3.close()
-                            } else {
-                                Page3.close()
-                            }
-                        })
+                        Page3.close()
                     }
                 })
-            }
+            })
         })
     }
 }
+browserEvents.F.onEvent(browserEvents.KeyEvent.Pressed, function () {
+    if (Page2T == false && (Page3T == false && Page1T == false)) {
+        ColorChangeMenuCode(Painting)
+    } else if (Page1T == true) {
+        Page1.close()
+        Page1T = false
+    } else if (Page2T == true) {
+        Page2.close()
+        Page2T = false
+    } else if (Page3T == true) {
+        Page3.close()
+        Page3T = false
+    }
+})
+browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function (x, y) {
+    if (Painting == true) {
+        for (let index = 0; index <= brushSizr; index++) {
+            image2.image.drawRect(x - brushSizr / 2, y - brushSizr / 2, index, index, CurrentColour + 1)
+        }
+    }
+})
 browserEvents.onWheel(function (dx, dy, dz) {
     if (Painting == true) {
         brushSizr += dy / -100
-        Mousee.sayText(brushSizr)
-        if (brushSizr < 1) {
-            brushSizr = 1
-        }
+    }
+    if (brushSizr < 1) {
+        brushSizr = 1
     }
 })
 browserEvents.onMouseMove(function (x, y) {
@@ -1055,20 +1068,6 @@ browserEvents.onMouseMove(function (x, y) {
                 image2.image.drawRect(x, y, index2, index2, CurrentColour + 1)
             }
         }
-    }
-})
-browserEvents.F.onEvent(browserEvents.KeyEvent.Pressed, function () {
-    if (Page2T == false && (Page3T == false && Page1T == false)) {
-        ColorChangeMenuCode()
-    } else if (Page1T == true) {
-        Page1.close()
-        Page1T = false
-    } else if (Page2T == true) {
-        Page2.close()
-        Page2T = false
-    } else if (Page3T == true) {
-        Page3.close()
-        Page3T = false
     }
 })
 let Page3: miniMenu.MenuSprite = null
